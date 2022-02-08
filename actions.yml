@@ -1,6 +1,18 @@
 name: 'UiPath Deploy'
 description: 'Deploys .nupkg packages in a given directory to UiPath Orchestrator'
 
+inputs:
+  orchestratorUrl:
+    description: 'URL to Orchestrator instance'
+    required: true
+  orchestratorFolderPath:
+    description: 'The folder path where the process is deployed'
+    required: true
+  orchestratorTenant: 
+    description: 'Name of the Orchestrator Tenant'
+    required: true
+  
+
 runs:
   using: "composite"
   steps:
