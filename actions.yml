@@ -17,6 +17,8 @@ secrets:
     required: false
   orchestratorPassword:
     required: false
+  orchestratorApiKey:
+    required: false
 
 runs:
   using: "composite"
