@@ -17,5 +17,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: package deploy ${{ github.workspace }} "${{ inputs.orchestratorUrl }}" default -t ${{ secrets.orchestratorApiKey }} -a myAccount
+    - run: package deploy ${{ github.workspace }} "${{ inputs.orchestratorUrl }}" default -t ${{ inputs.orchestratorApiKey }} -a myAccount
       shell: pwsh
