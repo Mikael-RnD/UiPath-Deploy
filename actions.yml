@@ -23,5 +23,5 @@ secrets:
 runs:
   using: "composite"
   steps:
-    - run: echo Hello
+    - run: package deploy ${{ github.workspace }} "${{ inputs.orchestratorUrl }}" default -t ${{ secrets.orchestratorApiKey }} -a myAccount
       shell: pwsh
