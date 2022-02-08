@@ -11,12 +11,6 @@ inputs:
   orchestratorTenant: 
     description: 'Name of the Orchestrator Tenant'
     required: true
-
-secrets:
-  orchestratorUsername:
-    required: false
-  orchestratorPassword:
-    required: false
   orchestratorApiKey:
     required: false
 
