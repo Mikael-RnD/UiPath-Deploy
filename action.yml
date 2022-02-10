@@ -24,5 +24,5 @@ secrets:
 runs:
   using: "composite"
   steps:
-    - run: "C:\\uipathcli\\lib\\net461\\uipcli.exe" package deploy "${{ github.workspace }}" "${{ inputs.orchestratorUrl }}" ${{ inputs.orchestratorTenant }} -u ${{ inputs.orchestratorUser }} -p ${{ secrets.orchestratorPassword }} -o ${{ inputs.orchestratorFolderPath }}
+    - run: "C:\\uipathcli\\lib\\net461\\uipcli.exe" package deploy "${{ github.workspace }}" "${{ inputs.orchestratorUrl }}" ${{ inputs.orchestratorTenant }} -u ${{ inputs.orchestratorUser }} -p ${{ secrets.orchestratorPassword }} -o "${{ inputs.orchestratorFolderPath }}"
       shell: pwsh
