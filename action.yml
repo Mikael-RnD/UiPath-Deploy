@@ -1,5 +1,5 @@
 name: 'UiPath Deploy'
-description: 'Deploys .nupkg packages in a given directory to UiPath Orchestrator'
+description: 'Deploys .nupkg packages in the Github workspace directory to UiPath Orchestrator'
 
 inputs:
   orchestratorUrl: 
