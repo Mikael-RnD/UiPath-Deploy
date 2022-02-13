@@ -2,27 +2,24 @@ name: 'UiPath Deploy'
 description: 'Deploys .nupkg packages in a given directory to UiPath Orchestrator'
 
 inputs:
-  orchestratorUrl:
-    description: 'URL to Orchestrator instance'
+  orchestratorUrl: 
+    description: 'Orchestrator instance URL'
     required: true
-  orchestratorFolderPath:
-    description: 'The folder path where the process is deployed'
+  orchestratorTenant:
+    description: 'Tenant on the Orchestrator instance'
     required: true
-  orchestratorTenant: 
-    description: 'Name of the Orchestrator Tenant'
+  orchestratorFolder:
+    description: 'Folder path in modern folder setup'
     required: true
-  orchestratorApiKey:
-    required: false
-  orchestratorUser:
-    description: 'The username of the account deploying the process'
+  orchestratorUsername:
+    description: 'Account for authenticating to Orchestrator'
     required: true
-secrets:
   orchestratorPassword:
-    description: 'Password for the account'
+    description: 'Password for the Orchestrator account'
     required: true
 
 runs:
   using: "composite"
   steps:
-    - run: "C:\\uipathcli\\lib\\net461\\uipcli.exe" package deploy "${{ github.workspace }}" "${{ inputs.orchestratorUrl }}" ${{ inputs.orchestratorTenant }} -u ${{ inputs.orchestratorUser }} -p ${{ secrets.orchestratorPassword }} -o "${{ inputs.orchestratorFolderPath }}"
+    - run: "C:\\uipathcli\\lib\\net461\\uipcli.exe" package deploy "${{ github.workspace }}" "${{ inputs.orchestratorUrl }}" ${{ inputs.orchestratorTenant }} -u ${{ inputs.orchestratorUsername }} -p ${{ secrets.orchestratorPassword }} -o ${{ inputs.orchestratorFolderPath }}
       shell: pwsh
