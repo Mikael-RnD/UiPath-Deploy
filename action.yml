@@ -1,5 +1,5 @@
 name: 'UiPath Deploy'
-description: 'Deploys .nupkg packages in a given directory to UiPath Orchestrator'
+description: 'Deploys .nupkg packages in the Github workspace directory to UiPath Orchestrator'
 
 inputs:
   orchestratorUrl: 
@@ -22,6 +22,6 @@ runs:
   using: "composite"
   steps:    
     - name: Deploy
-      run: |
-        &"C:\\uipathcli\\lib\\net461\\uipcli.exe" package deploy "${{ github.workspace }}" "${{ inputs.orchestratorUrl }}" ${{ inputs.orchestratorTenant }} --username ${{ inputs.orchestratorUsername }} --password ${{ inputs.orchestratorPassword }} --organizationUnit "${{ inputs.orchestratorFolderPath }}"
       shell: pwsh
+      run: |
+        & "C:\\uipathcli\\lib\\net461\\uipcli.exe" package deploy "${{ github.workspace }}" "${{ inputs.orchestratorUrl }}" ${{ inputs.orchestratorTenant }} --username ${{ inputs.orchestratorUsername }} --password ${{ inputs.orchestratorPassword }} --organizationUnit "${{ inputs.orchestratorFolder }}"
