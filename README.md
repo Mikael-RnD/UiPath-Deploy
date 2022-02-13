@@ -1,6 +1,7 @@
 # UiPath-Deploy
 GitHub action for deploying nuget packages to UiPath Orchestrator. 
 
+Example usage:
       # .nupkg packages are deployed to UiPath Orchestrator
       - name: UiPath Deploy
         uses: Mikael-RnD/UiPath-Deploy@main
