@@ -23,6 +23,7 @@ inputs:
   orchestratorLogicalName:
     description: 'Logical name for Orchestrator organization'
     required: true
+    default: 'default'
 
 runs:
   using: "composite"
