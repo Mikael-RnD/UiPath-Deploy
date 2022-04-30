@@ -11,17 +11,22 @@ inputs:
   orchestratorFolder:
     description: 'Folder path in modern folder setup'
     required: true
-  orchestratorUsername:
+  orchestratorApplicationId:
     description: 'Account for authenticating to Orchestrator'
     required: true
-  orchestratorPassword:
+  orchestratorApplicationSecret:
     description: 'Password for the Orchestrator account'
+    required: true
+  orchestratorApplicationScope:
+    description: 'Access scope for external application'
+    required: true
+  orchestratorLogicalName:
+    description: 'Logical name for Orchestrator organization'
     required: true
 
 runs:
   using: "composite"
   steps:    
     - name: Deploy
-      shell: pwsh
-      run: |
-        & "C:\\uipathcli\\lib\\net461\\uipcli.exe" package deploy "${{ github.workspace }}" "${{ inputs.orchestratorUrl }}" ${{ inputs.orchestratorTenant }} --username ${{ inputs.orchestratorUsername }} --password ${{ inputs.orchestratorPassword }} --organizationUnit "${{ inputs.orchestratorFolder }}"
+      shell: powershell
+      run: uipcli package deploy "${{ github.workspace }}" "${{ inputs.orchestratorUrl }}" ${{ inputs.orchestratorTenant }} --accountForApp "${{ inputs.orchestratorLogicalName }}" --applicationId "${{ inputs.orchestratorApplicationId }}" --applicationSecret "${{ inputs.orchestratorApplicationSecret }}" --applicationScope "${{ inputs.orchestratorApplicationScope }}" --organizationUnit "${{ inputs.orchestratorFolder }}"

@@ -11,5 +11,6 @@ Example usage:
           orchestratorUrl: # Link to UiPath Orchestrator instance
           orchestratorTenant: # Name of tenant where packages are deployed
           orchestratorFolder: # Orchestrator Folder path where packages are deployed
-          orchestratorUsername: # Account for deploying with
-          orchestratorPassword: # Password for basic authentication
+          orchestratorApplicationId: # Id of External Application in Orchestrator
+          orchestratorApplicationSecret: # Application Secret for External Application in Orchestrator
+          orchestratorLogicalName: # Orchestrator logical name. Also known as organization id or account for app
