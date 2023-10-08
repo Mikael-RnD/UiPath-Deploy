@@ -8,6 +8,7 @@ Example usage:
         uses: Mikael-RnD/UiPath-Deploy@main
         with:
           # All inputs are required
+          packagesPath: ${{ github.workspace }}
           orchestratorUrl: # Link to UiPath Orchestrator instance
           orchestratorTenant: # Name of tenant where packages are deployed
           orchestratorFolder: # Orchestrator Folder path where packages are deployed
