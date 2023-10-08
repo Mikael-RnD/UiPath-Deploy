@@ -2,6 +2,9 @@ name: 'UiPath Deploy'
 description: 'Deploys .nupkg packages in the Github workspace directory to UiPath Orchestrator'
 
 inputs:
+  packagesPath:
+    description: 'Relative path to a folder containing the .nupkg to be deployed'
+    required: true
   orchestratorUrl: 
     description: 'Orchestrator instance URL'
     required: true
@@ -29,4 +32,4 @@ runs:
   steps:    
     - name: Deploy
       shell: powershell
-      run: uipcli package deploy "${{ github.workspace }}" "${{ inputs.orchestratorUrl }}" ${{ inputs.orchestratorTenant }} --accountForApp "${{ inputs.orchestratorLogicalName }}" --applicationId "${{ inputs.orchestratorApplicationId }}" --applicationSecret "${{ inputs.orchestratorApplicationSecret }}" --applicationScope "${{ inputs.orchestratorApplicationScope }}" --organizationUnit "${{ inputs.orchestratorFolder }}"
+      run: uipcli package deploy "${{ inputs.packagesPath }}" "${{ inputs.orchestratorUrl }}" ${{ inputs.orchestratorTenant }} --accountForApp "${{ inputs.orchestratorLogicalName }}" --applicationId "${{ inputs.orchestratorApplicationId }}" --applicationSecret "${{ inputs.orchestratorApplicationSecret }}" --applicationScope "${{ inputs.orchestratorApplicationScope }}" --organizationUnit "${{ inputs.orchestratorFolder }}"
