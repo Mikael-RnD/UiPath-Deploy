@@ -1,0 +1,25 @@
+# This is a workflow to check the contents of a pull request to main
+
+name: PR Checks
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  commitsar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Commitsar
+        uses: aevea/commitsar@v0.20.2
+        with: 
+          config: .commitsar.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
