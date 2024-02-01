@@ -7,7 +7,8 @@ inputs:
     required: true
   orchestratorUrl: 
     description: 'Orchestrator instance URL'
-    required: true
+    required: false
+    default: 'https://cloud.uipath.com/'
   orchestratorTenant:
     description: 'Tenant on the Orchestrator instance'
     required: true
@@ -22,7 +23,8 @@ inputs:
     required: true
   orchestratorApplicationScope:
     description: 'Access scope for external application'
-    required: true
+    required: false
+    default: "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines.Read OR.Monitoring OR.Robots.Read OR.Settings.Read OR.TestSets OR.TestSetExecutions OR.TestSetSchedules OR.Users.Read"
   orchestratorLogicalName:
     description: 'Logical name for Orchestrator organization'
     required: true
