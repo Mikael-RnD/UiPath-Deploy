@@ -42,11 +42,11 @@ This action requires the following items to be configured:
 ## Inputs 
 |Name|Description|Required|Default value|
 |:--|:--|:--|:--|
-|**packagesPath**|Path to a directory containing .nupkg packages for deployment to Orchestrator|True|./packages|
+|**packagesPath**|Path to a directory containing .nupkg packages for deployment to Orchestrator|True||
 |**orchestratorUrl**|Base URL to Orchestrator instance|False|https://cloud.uipath.com/|
-|**orchestratorTenant**|Name of the Orchestrator tenant|True|TestTenant|
-|**orchestratorLogicalName**|Id of the UiPath organization|True|testorg|
-|**orchestratorFolder**|The fully qualified name of the Orchestrator folder where processes are deployed to|True|Finance/SE|
+|**orchestratorTenant**|Name of the Orchestrator tenant|True||
+|**orchestratorLogicalName**|Id of the UiPath organization|True||
+|**orchestratorFolder**|The fully qualified name of the Orchestrator folder where processes are deployed to|True||
 |**orchestratorApplicationId**|Application ID for the CLI to authenticate with UiPath Orchestrator|True||
 |**orchestratorApplicationSecret**|Application Secret for the CLI to authenticate with UiPath Orchestrator|True||
 |**orchestratorApplicationScope**|The accesss scope setup for the external application|False|"OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines.Read OR.Monitoring OR.Robots.Read OR.Settings.Read OR.TestSets OR.TestSetExecutions OR.TestSetSchedules OR.Users.Read"|
