@@ -49,7 +49,7 @@ This action requires the following items to be configured:
 
 |Name|Description|Required|Default value|
 |:--|:--|:--|:--|
-|**packagesPath**|Path to a directory containing .nupkg packages for deployment to Orchestrator|True||
+|**packagesPath**|Path to a directory containing .nupkg packages for deployment to Orchestrator|False|`${{ github.workspace }}`|
 |**orchestratorUrl**|Base URL to Orchestrator instance|False|<https://cloud.uipath.com/>|
 |**orchestratorTenant**|Name of the Orchestrator tenant|True||
 |**orchestratorLogicalName**|Id of the UiPath organization|True||
