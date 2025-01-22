@@ -4,7 +4,8 @@ description: 'Deploys .nupkg packages in the Github workspace directory to UiPat
 inputs:
   packagesPath:
     description: 'Relative path to a folder containing the .nupkg to be deployed'
-    required: true
+    required: false
+    default: ${{ github.workspace }}
   orchestratorUrl: 
     description: 'Orchestrator instance URL'
     required: false
