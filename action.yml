@@ -34,14 +34,14 @@ runs:
   using: "composite"
   steps:    
     - name: UiPath Deploy
-      shell: pwsh
-      run: | 
-        uipcli package deploy "${{ inputs.packagesPath }}" `
-          "${{ inputs.orchestratorUrl }}" `
-          "${{ inputs.orchestratorTenant }}" `
-          --accountForApp "${{ inputs.orchestratorLogicalName }}" `
-          --applicationId "${{ inputs.orchestratorApplicationId }}" `
-          --applicationSecret "${{ inputs.orchestratorApplicationSecret }}" `
-          --applicationScope "${{ inputs.orchestratorApplicationScope }}" `
+      shell: bash
+      run: |
+        uipcli package deploy "${{ inputs.packagesPath }}" \
+          "${{ inputs.orchestratorUrl }}" \
+          "${{ inputs.orchestratorTenant }}" \
+          --accountForApp "${{ inputs.orchestratorLogicalName }}" \
+          --applicationId "${{ inputs.orchestratorApplicationId }}" \
+          --applicationSecret "${{ inputs.orchestratorApplicationSecret }}" \
+          --applicationScope "${{ inputs.orchestratorApplicationScope }}" \
           --organizationUnit "${{ inputs.orchestratorFolder }}"
           
