@@ -1,0 +1,89 @@
+name: Deployment Test
+
+# Controls when the workflow will run
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  pack:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup UiPath CLI
+        uses: Mikael-RnD/setup-uipath@v2
+
+      - id: pack
+        name: UiPath Pack
+        uses: Mikael-RnD/UiPath-Pack@v1
+        with:
+          orchestratorUrl: 'https://cloud.uipath.com/'
+          orchestratorTenant: 'Mikaels_RnD'
+          orchestratorFolder: 'CrossPlatform'
+          orchestratorApplicationId: ${{ secrets.UIPATH_APP_ID }}
+          orchestratorApplicationSecret: ${{ secrets.UIPATH_APP_SECRET }}
+          orchestratorApplicationScope: "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines.Read OR.Monitoring OR.Robots.Read OR.Settings.Read OR.TestSets OR.TestSetExecutions OR.TestSetSchedules OR.Users.Read"
+          orchestratorLogicalName: 'hppcntv'
+          projectVersion: '${{ github.event.pull_request.number }}.0.${{ github.run_number }}-${{ github.event.pull_request.head.sha }}'
+        
+      - uses: actions/upload-artifact@v4
+        with:
+            name: packages
+            path: ${{ steps.pack.outputs.packagesPath }}
+            if-no-files-found: error
+            retention-days: 90
+
+  deploy:
+      needs: pack
+      strategy:
+        matrix:
+          os: [ windows-latest, ubuntu-latest ]
+      runs-on: ${{ matrix.os }}
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+
+        - id: download-artifact
+          name: Download Artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: packages
+
+        - id: set-folder
+          name: Set Folder
+          shell: bash
+          run: |
+            if [ "${{ matrix.os }}" == "windows-latest" ]; then
+              echo "folder=Test" >> $GITHUB_OUTPUT
+            else
+              echo "folder=CrossPlatform" >> $GITHUB_OUTPUT
+            fi
+
+        - name: Setup UiPath CLI
+          uses: Mikael-RnD/setup-uipath@v2
+
+        - name: Setup Dotnet
+          if: ${{ matrix.os == 'ubuntu-latest' }}
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: |
+              8.0.x
+
+        - name: UiPath Deploy
+          uses: ./
+          with:
+            orchestratorUrl: 'https://cloud.uipath.com/'
+            orchestratorTenant: 'Mikaels_RnD'
+            orchestratorFolder: '${{ steps.set-folder.outputs.folder }}'
+            orchestratorApplicationId: ${{ secrets.UIPATH_APP_ID }}
+            orchestratorApplicationSecret: ${{ secrets.UIPATH_APP_SECRET }}
+            orchestratorApplicationScope: "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines.Read OR.Monitoring OR.Robots.Read OR.Settings.Read OR.TestSets OR.TestSetExecutions OR.TestSetSchedules OR.Users.Read"
+            orchestratorLogicalName: 'hppcntv'
+
