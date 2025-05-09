@@ -1,6 +1,6 @@
 # UiPath-Deploy
 
-GitHub action for deploying all .nupkg packages in a provided path to UiPath Orchestrator using the [package deploy task from the UiPath CLI](https://docs.uipath.com/automation-ops/automation-cloud/latest/user-guide/executing-tasks-cli#deploying-a-package-to-orchestrator).
+GitHub action for deploying all .nupkg packages in a provided path to UiPath Orchestrator using the [package deploy task from the UiPath CLI](https://docs.uipath.com/cicd-integrations/standalone/2024.10/user-guide/deploying-a-package-to-orchestrator).
 
 **Note:** The current version of this action is only compatible with Windows runners
 
@@ -9,7 +9,7 @@ GitHub action for deploying all .nupkg packages in a provided path to UiPath Orc
 This action requires the following items to be configured:
 
 - UiPath CLI installed on GitHub Actions Runner. This can be done by running the [setup-uipath action](https://github.com/Mikael-RnD/setup-uipath) before this action
-- [An external application created in Orchestrator](https://docs.uipath.com/automation-cloud/automation-cloud/latest/admin-guide/managing-external-applications) with the access scopes specified in the [UiPath CLI documentation](https://docs.uipath.com/automation-ops/automation-cloud/latest/user-guide/executing-tasks-cli#api-access-application-scopes). With the credentials passed to this actions input from GitHub Secrets (or other safe credential stores)
+- [An external application created in Orchestrator](https://docs.uipath.com/automation-cloud/automation-cloud/latest/admin-guide/managing-external-applications) with the access scopes specified in the [UiPath CLI documentation](https://docs.uipath.com/cicd-integrations/standalone/2024.10/user-guide/executing-uipath-cli-tasks#api-access-application-scopes). With the credentials passed to this actions input from GitHub Secrets (or other safe credential stores)
 
 ## Example usage
 
