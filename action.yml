@@ -29,6 +29,10 @@ inputs:
   orchestratorLogicalName:
     description: 'Logical name for Orchestrator organization'
     required: true
+  traceLevel:
+    description: 'Level of details for logs. Possible values are: Verbose, Information, Warning, Error'
+    required: false
+    default: 'Warning'
 
 runs:
   using: "composite"
@@ -43,5 +47,6 @@ runs:
           --applicationId "${{ inputs.orchestratorApplicationId }}" \
           --applicationSecret "${{ inputs.orchestratorApplicationSecret }}" \
           --applicationScope "${{ inputs.orchestratorApplicationScope }}" \
-          --organizationUnit "${{ inputs.orchestratorFolder }}"
+          --organizationUnit "${{ inputs.orchestratorFolder }}" \
+          --traceLevel "${{ inputs.traceLevel }}"
           
